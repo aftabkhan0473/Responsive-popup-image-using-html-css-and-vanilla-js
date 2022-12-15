@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popup Image Gallery using html css and vanilla Js</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .box img{
+            width: 200px;
+            height: 200px;
+        }
+        .container_05{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+        .container_05 .box img{
+            border-radius: 15px;
+            cursor: pointer;
+            transition: 0.2s linear;
+        }
+        .outer_05{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            /* height: 100vh; */
+        }
+        .container_05 .box img:hover{
+            /* scale: 2; */
+            scale: 1.05;
+            /* margin: 120px 20px 20px 20px; */
+            /* margin: 120px; */
+            /* margin: 2px; */
+        }
+        .text_center{
+            text-align: center;
+        }
+        h1{
+            margin: 25px;
+        }
+        .pop_up_image{
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: rgba(0,0,0,0.7);
+            height: 100%;
+            width: 100%;
+            z-index: 500;
+        }
+        .pop_up_image span{
+            position: absolute;
+            top: 0;
+            right: 10px;
+            font-size: 60px;
+            font-weight: bolder;
+            color: #fff;
+            cursor: pointer;
+            z-index: 100;
+        }
+        .pop_up_image img{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            border: 5px solid #fff;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+        .pop_up_image{
+            display: none;
+        }
+        @media (max-width:758px){
+            .pop_up_image img{
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="outer_05">
+        <h1 class="text_center">Image Gallery</h1>
+        <div class="container_05">
+            <div class="box"><img src="/gitignore/images/1.png" alt=""></div>
+            <div class="box"><img src="/gitignore/images/2.png" alt=""></div>
+        </div>
+        <div class="pop_up_image">
+            <span>&times;</span>
+            <div class="pop_up">
+                <div class="box2"><img src="" alt=""></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.querySelectorAll('.container_05 img').forEach(image =>{
+         image.onclick = () =>{
+            document.querySelector('.pop_up_image').style.display='block';
+            document.querySelector('.pop_up_image img').src = image.getAttribute('src') ;
+         }
+        });
+        document.querySelector('.pop_up_image span').onclick = () =>{
+            document.querySelector('.pop_up_image').style.display='none'; 
+        }
+    </script>
+</body>
+</html>
